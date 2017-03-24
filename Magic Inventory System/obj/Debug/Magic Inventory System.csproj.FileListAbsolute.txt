@@ -1,0 +1,6 @@
+C:\Users\Marjorie\Documents\GitHubVisualStudio\Magic Inventory System\Magic Inventory System\bin\Debug\Magic Inventory System.exe.config
+C:\Users\Marjorie\Documents\GitHubVisualStudio\Magic Inventory System\Magic Inventory System\bin\Debug\Magic Inventory System.exe
+C:\Users\Marjorie\Documents\GitHubVisualStudio\Magic Inventory System\Magic Inventory System\bin\Debug\Magic Inventory System.pdb
+C:\Users\Marjorie\Documents\GitHubVisualStudio\Magic Inventory System\Magic Inventory System\obj\Debug\Magic Inventory System.csprojResolveAssemblyReference.cache
+C:\Users\Marjorie\Documents\GitHubVisualStudio\Magic Inventory System\Magic Inventory System\obj\Debug\Magic Inventory System.exe
+C:\Users\Marjorie\Documents\GitHubVisualStudio\Magic Inventory System\Magic Inventory System\obj\Debug\Magic Inventory System.pdb
