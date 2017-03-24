@@ -1,0 +1,1 @@
+[{"Id":1,"Store":"CBD", "Product" : "Rabbite", "Quantity" : 2, "CurrentStock" : 4,"StockAvailibility":4}]

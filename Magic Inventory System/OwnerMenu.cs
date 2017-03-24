@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace Magic_Inventory_System
 {
@@ -10,7 +12,19 @@ namespace Magic_Inventory_System
     {
         private short displayAllStock()
         {
+            //Use IEnmerable also for stocks ? 
+            List<Stock> stocks = new List<Stock>();
+            IEnumerable<string> lines = File.ReadLines(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName +  "\\json\\stockrequests.txt").ToList();
+            foreach (var line in lines)
+            {
+                stocks.Add(JsonConvert.DeserializeObject<Stock>(line));
+            }
             Console.WriteLine("dAS");
+            for (int i = 0; i < stocks.Count(); i++)
+            {
+                Console.Write($"Id = {stocks[i].Id} Product = {stocks[i].Product} Quantity = {stocks[i].Quantity}");
+                Console.WriteLine($"Current Stock = {stocks[i].CurrentStock} Stock Available = {stocks[i].StockAvailability}");
+            }
             return 1;
         }
         private short displayStock()

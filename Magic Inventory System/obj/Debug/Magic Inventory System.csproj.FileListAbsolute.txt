@@ -4,3 +4,11 @@ C:\Users\Marjorie\Documents\GitHubVisualStudio\Magic Inventory System\Magic Inve
 C:\Users\Marjorie\Documents\GitHubVisualStudio\Magic Inventory System\Magic Inventory System\obj\Debug\Magic Inventory System.csprojResolveAssemblyReference.cache
 C:\Users\Marjorie\Documents\GitHubVisualStudio\Magic Inventory System\Magic Inventory System\obj\Debug\Magic Inventory System.exe
 C:\Users\Marjorie\Documents\GitHubVisualStudio\Magic Inventory System\Magic Inventory System\obj\Debug\Magic Inventory System.pdb
+H:\RMIT\WDT\Magic Inventory System\Magic Inventory System\bin\Debug\Magic Inventory System.exe.config
+H:\RMIT\WDT\Magic Inventory System\Magic Inventory System\obj\Debug\Magic Inventory System.exe
+H:\RMIT\WDT\Magic Inventory System\Magic Inventory System\obj\Debug\Magic Inventory System.pdb
+H:\RMIT\WDT\Magic Inventory System\Magic Inventory System\bin\Debug\Magic Inventory System.exe
+H:\RMIT\WDT\Magic Inventory System\Magic Inventory System\bin\Debug\Magic Inventory System.pdb
+H:\RMIT\WDT\Magic Inventory System\Magic Inventory System\bin\Debug\Newtonsoft.Json.dll
+H:\RMIT\WDT\Magic Inventory System\Magic Inventory System\bin\Debug\Newtonsoft.Json.xml
+H:\RMIT\WDT\Magic Inventory System\Magic Inventory System\obj\Debug\Magic Inventory System.csprojResolveAssemblyReference.cache
