@@ -13,18 +13,34 @@ namespace Magic_Inventory_System
         private short displayAllStock()
         {
             //Use IEnmerable also for stocks ? 
-            List<Stock> stocks = new List<Stock>();
-            IEnumerable<string> lines = File.ReadLines(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName +  "\\json\\stockrequests.txt").ToList();
-            foreach (var line in lines)
+            /*using (JsonTextReader reader = new JsonTextReader(File.OpenRead())
             {
-                stocks.Add(JsonConvert.DeserializeObject<Stock>(line));
-            }
+                reader.SupportMultipleContent = true;
+
+                var serializer = new JsonSerializer();
+                while (reader.Read())
+                {
+                    if (reader.TokenType == JsonToken.StartObject)
+                    {
+                        Contact c = serializer.Deserialize<Contact>(reader);
+                        Console.WriteLine(c.FirstName + " " + c.LastName);
+                    }
+                }
+            }*/
+            List<Stock> stocks = new List<Stock>();
+            string lines = File.ReadAllText(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName +  "\\json\\stockrequests.txt");
+            /*            foreach (var line in lines)
+                        {*/
+            //stocks.Add(JsonConvert.DeserializeObject<Stock>(lines));
+            //}
+            stocks = JsonConvert.DeserializeObject<List<Stock>>(lines);            
             Console.WriteLine("dAS");
             for (int i = 0; i < stocks.Count(); i++)
             {
                 Console.Write($"Id = {stocks[i].Id} Product = {stocks[i].Product} Quantity = {stocks[i].Quantity}");
                 Console.WriteLine($"Current Stock = {stocks[i].CurrentStock} Stock Available = {stocks[i].StockAvailability}");
             }
+            waitForInput();
             return 1;
         }
         private short displayStock()

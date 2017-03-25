@@ -25,7 +25,11 @@ namespace Magic_Inventory_System
         protected void read()
         {
             _choice = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine(_choice);
+        }
+        //Usefull in every child class ? 
+        protected void waitForInput()
+        {
+            Console.ReadLine();
         }
         public short run()
         {
