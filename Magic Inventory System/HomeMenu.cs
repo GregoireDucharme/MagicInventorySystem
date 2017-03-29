@@ -28,7 +28,10 @@ namespace Magic_Inventory_System
         private short franchiseOwnerMenu()
         {
             Console.WriteLine("fOM");
-            FranchiseHolderMenu FHM = new FranchiseHolderMenu();
+            Console.Clear();
+            Console.WriteLine("Franchise holder id ?");
+            read();
+            FranchiseHolderMenu FHM = new FranchiseHolderMenu(_choice);
             short result = 1;
 
             while (result == 1)
@@ -40,7 +43,10 @@ namespace Magic_Inventory_System
         }
         private short customerMenu()
         {
-            CustomerMenu CM = new CustomerMenu();
+            Console.Clear();
+            Console.WriteLine("Which shop id ?");
+            read();
+            CustomerMenu CM = new CustomerMenu(_choice);
             short result = 1;
 
             while (result == 1)

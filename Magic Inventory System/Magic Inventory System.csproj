@@ -52,6 +52,7 @@
     <Compile Include="AMenu.cs" />
     <Compile Include="FranchiseHolderMenu.cs" />
     <Compile Include="HomeMenu.cs" />
+    <Compile Include="Item.cs" />
     <Compile Include="OwnerMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stock.cs" />

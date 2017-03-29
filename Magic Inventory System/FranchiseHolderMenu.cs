@@ -8,6 +8,7 @@ namespace Magic_Inventory_System
 {
     class FranchiseHolderMenu : AMenu
     {
+        private int _id;
         private short displayInventory()
         {
             Console.WriteLine("dI");
@@ -35,15 +36,14 @@ namespace Magic_Inventory_System
             Console.WriteLine("4. Return to main menu");
             Console.WriteLine("5. Exit");
         }
-        public FranchiseHolderMenu()
+        public FranchiseHolderMenu(int id)
         {
             functions.Add(displayInventory);
             functions.Add(displayInventoryThreshold);
             functions.Add(addNewItem);
-            // Should quit be on the delegate ?
             functions.Add(quit);
-            // NOT WORKING FOR NOW, SAME AS QUIT
             functions.Add(exit);
+            _id = id;
         }
     }
 }

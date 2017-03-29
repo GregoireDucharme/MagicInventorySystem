@@ -8,6 +8,7 @@ namespace Magic_Inventory_System
 {
     class CustomerMenu : AMenu
     {
+        private int _shopId;
         private short displayWorkshop()
         {
             Console.WriteLine("dW");
@@ -29,14 +30,14 @@ namespace Magic_Inventory_System
             Console.WriteLine("3. Return to main menu");
             Console.WriteLine("4. Exit");
         }
-        public CustomerMenu()
+        public CustomerMenu(int shopId)
         {
             functions.Add(displayProduct);
             functions.Add(displayWorkshop);
             // Should quit be on the delegate ?
             functions.Add(quit);
-            // NOT WORKING FOR NOW, SAME AS QUIT
             functions.Add(exit);
+            _shopId = shopId;
         }
     }
 }
