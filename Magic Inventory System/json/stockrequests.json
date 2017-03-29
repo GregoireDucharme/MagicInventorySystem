@@ -1,0 +1,1 @@
+[{"Id":1,"Store":"CBD","Product":"Rabbit","Quantity":4,"CurrentStock":4,"StockAvailability":true},{"Id":2,"Store":"CBD","Product":"Stuff","Quantity":4,"CurrentStock":2,"StockAvailability":true},{"Id":3,"Store":"Carlton","Product":"Thing","Quantity":1,"CurrentStock":14,"StockAvailability":false}]

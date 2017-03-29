@@ -13,6 +13,6 @@ namespace Magic_Inventory_System
         public string Product { get; set; }
         public int Quantity { get; set; }
         public int CurrentStock { get; set; }
-        public int StockAvailability { get; set; }
+        public bool StockAvailability { get; set; }
     }
 }

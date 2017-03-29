@@ -1,3 +1,0 @@
-[{"Id":1,"Store":"CBD", "Product" : "Rabbit", "Quantity" : 2, "CurrentStock" : 4,"StockAvailibility":4},
-{"Id":2,"Store":"CBD", "Product" : "Stuff", "Quantity" : 4, "CurrentStock" : 2,"StockAvailibility":2},
-{"Id":3,"Store":"Carlton", "Product" : "Thing", "Quantity" : 1, "CurrentStock" : 14,"StockAvailibility":10}]

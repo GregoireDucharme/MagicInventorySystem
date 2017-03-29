@@ -10,47 +10,89 @@ namespace Magic_Inventory_System
 {
     class OwnerMenu : AMenu
     {
+        private bool handleStockRequest(Stock stock)
+        {
+            Console.Write($"Id = {stock.Id} Product = {stock.Product} Quantity = {stock.Quantity} ");
+            Console.WriteLine($"Current Stock = {stock.CurrentStock} Stock Available = {stock.StockAvailability}");
+            Console.WriteLine("How many ?");
+            read();
+            if (stock.StockAvailability == true && _choice + stock.Quantity <= stock.CurrentStock)
+            {
+                stock.Quantity += _choice;
+                Console.WriteLine("Stock updated, press any key to exit");
+                waitForInput();
+                return true;
+            }
+            Console.WriteLine("Impossible to update stock, press any key to exit");
+            waitForInput();
+            return false;
+        }
+        private bool useCondition = false;
+        private bool condition = false;
         private short displayAllStock()
         {
-            //Use IEnmerable also for stocks ? 
-            /*using (JsonTextReader reader = new JsonTextReader(File.OpenRead())
-            {
-                reader.SupportMultipleContent = true;
-
-                var serializer = new JsonSerializer();
-                while (reader.Read())
-                {
-                    if (reader.TokenType == JsonToken.StartObject)
-                    {
-                        Contact c = serializer.Deserialize<Contact>(reader);
-                        Console.WriteLine(c.FirstName + " " + c.LastName);
-                    }
-                }
-            }*/
             List<Stock> stocks = new List<Stock>();
-            string lines = File.ReadAllText(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName +  "\\json\\stockrequests.txt");
-            /*            foreach (var line in lines)
-                        {*/
-            //stocks.Add(JsonConvert.DeserializeObject<Stock>(lines));
-            //}
-            stocks = JsonConvert.DeserializeObject<List<Stock>>(lines);            
+            // Any better option ?
+            List<int> IdArray = new List<int>();
+            string stockRequestFileName = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\json\\stockrequests.json";
+            string lines = File.ReadAllText(stockRequestFileName);
+            stocks = JsonConvert.DeserializeObject<List<Stock>>(lines);
             Console.WriteLine("dAS");
             for (int i = 0; i < stocks.Count(); i++)
             {
-                Console.Write($"Id = {stocks[i].Id} Product = {stocks[i].Product} Quantity = {stocks[i].Quantity}");
-                Console.WriteLine($"Current Stock = {stocks[i].CurrentStock} Stock Available = {stocks[i].StockAvailability}");
+                if (useCondition == false || condition == stocks[i].StockAvailability)
+                {
+                    IdArray.Add(stocks[i].Id);
+                    Console.Write($"Id = {stocks[i].Id} Product = {stocks[i].Product} Quantity = {stocks[i].Quantity} ");
+                    Console.WriteLine($"Current Stock = {stocks[i].CurrentStock} Stock Available = {stocks[i].StockAvailability}");
+                }
             }
-            waitForInput();
+            read();
+            if (IdArray.Contains(_choice))
+            {
+                for (int i = 0; i < stocks.Count(); i++)
+                {
+                    if (stocks[i].Id == _choice)
+                    {
+                        if (handleStockRequest(stocks[i]) == true)
+                            File.WriteAllText(stockRequestFileName, JsonConvert.SerializeObject(stocks));
+                        break;
+                    }
+                }
+            }
             return 1;
         }
         private short displayStock()
         {
             Console.WriteLine("dS");
+            string ConditionString = Console.ReadLine();
+            useCondition = true;
+            if (String.Compare(ConditionString, "true", true) == 0 || String.Compare(ConditionString, "t", true) == 0)
+                condition = true;
+            else if (String.Compare(ConditionString, "false", true) == 0 || String.Compare(ConditionString, "f", true) == 0)
+                condition = false;
+            else
+            {
+                Console.WriteLine("Invalid input, press any key to exit");
+                waitForInput();
+                return (1);
+            }
+            displayAllStock();
             return 1;
         }
         private short displayAllProduct()
         {
             Console.WriteLine("dAP");
+            List<Stock> products = new List<Stock>();
+            string ownerInventoryFileName = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\json\\owners_inventory.json";
+            string lines = File.ReadAllText(ownerInventoryFileName);
+            products = JsonConvert.DeserializeObject<List<Stock>>(lines);
+            Console.WriteLine("dAS");
+            for (int i = 0; i < products.Count(); i++)
+            {
+                Console.WriteLine($"Id = {products[i].Id} Product = {products[i].Product} CurrentStock = {products[i].CurrentStock} ");
+            }
+            waitForInput();
             return 1;
         }
 
