@@ -12,7 +12,7 @@ namespace Magic_Inventory_System
     {
         private bool handleStockRequest(Stock stock)
         {
-            Console.Write($"Id = {stock.Id} Product = {stock.Product} Quantity = {stock.Quantity} ");
+            Console.Write($"Id = {stock.Id} Store = {stock.Store} Product = {stock.Product} Quantity = {stock.Quantity} ");
             Console.WriteLine($"Current Stock = {stock.CurrentStock} Stock Available = {stock.StockAvailability}");
             Console.WriteLine("How many ?");
             read();
@@ -43,9 +43,13 @@ namespace Magic_Inventory_System
                 if (useCondition == false || condition == stocks[i].StockAvailability)
                 {
                     IdArray.Add(stocks[i].Id);
-                    Console.Write($"Id = {stocks[i].Id} Product = {stocks[i].Product} Quantity = {stocks[i].Quantity} ");
+                    Console.Write($"Id = {stocks[i].Id} Store = {stocks[i].Store} Product = {stocks[i].Product} Quantity = {stocks[i].Quantity} ");
                     Console.WriteLine($"Current Stock = {stocks[i].CurrentStock} Stock Available = {stocks[i].StockAvailability}");
                 }
+            }
+            if (IdArray.Count() == 0)
+            {
+                return 1;
             }
             read();
             if (IdArray.Contains(_choice))

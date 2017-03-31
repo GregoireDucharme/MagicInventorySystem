@@ -1,1 +1,1 @@
-[{"Id":1,"Product":"Rabbit","CurrentStock":4},{"Id":2,"Product":"Stuff","CurrentStock":2},{"Id":3,"Product":"Thing","CurrentStock":14}]
+[{"Id":1,"Product":"Rabbit","CurrentStock":5,"ReStock":false},{"Id":2,"Product":"Stuff","CurrentStock":2,"ReStock":false},{"Id":3,"Product":"Thing","CurrentStock":9,"ReStock":false}]

@@ -25,22 +25,30 @@ namespace Magic_Inventory_System
             }
             return result;
         }
+        string[] StoreName = { "CBD", "North", "South", "East", "West" };
+
         private short franchiseOwnerMenu()
         {
             Console.WriteLine("fOM");
             Console.Clear();
             Console.WriteLine("Franchise holder id ?");
+            Console.WriteLine("CBD.1 North.2 South.3 East.4 West.5");
             read();
-            FranchiseHolderMenu FHM = new FranchiseHolderMenu(_choice);
             short result = 1;
-
-            while (result == 1)
+            if (_choice >= 1 && _choice <= 4)
             {
-                FHM.display();
-                result = FHM.run();
+                FranchiseHolderMenu FHM = new FranchiseHolderMenu(StoreName[_choice - 1]);
+                while (result == 1)
+                {
+                    FHM.display();
+                    result = FHM.run();
+                }
             }
+            else
+                Console.WriteLine("Wrong franchise holder id");
             return result;
         }
+
         private short customerMenu()
         {
             Console.Clear();
