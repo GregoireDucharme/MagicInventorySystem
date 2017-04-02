@@ -52,17 +52,22 @@ namespace Magic_Inventory_System
         private short customerMenu()
         {
             Console.Clear();
-            Console.WriteLine("Which shop id ?");
+            Console.WriteLine("Shop id ?");
+            Console.WriteLine("CBD.1 North.2 South.3 East.4 West.5");
             read();
-            CustomerMenu CM = new CustomerMenu(_choice);
             short result = 1;
 
-            while (result == 1)
+            if (_choice >= 1 && _choice <= 4)
             {
-                CM.display();
-                result = CM.run();
+                CustomerMenu CM = new CustomerMenu(StoreName[_choice - 1]);
+
+                while (result == 1)
+                {
+                    CM.display();
+                    result = CM.run();
+                }
+                Console.WriteLine("cM");
             }
-            Console.WriteLine("cM");
             return result;
         }
         public HomeMenu()

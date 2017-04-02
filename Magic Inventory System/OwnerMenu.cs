@@ -31,12 +31,11 @@ namespace Magic_Inventory_System
         private bool condition = false;
         private short displayAllStock()
         {
-            List<Stock> stocks = new List<Stock>();
             // Any better option ?
             List<int> IdArray = new List<int>();
             string stockRequestFileName = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\json\\stockrequests.json";
             string lines = File.ReadAllText(stockRequestFileName);
-            stocks = JsonConvert.DeserializeObject<List<Stock>>(lines);
+            List<Stock> stocks = JsonConvert.DeserializeObject<List<Stock>>(lines);
             Console.WriteLine("dAS");
             for (int i = 0; i < stocks.Count(); i++)
             {
@@ -87,10 +86,9 @@ namespace Magic_Inventory_System
         private short displayAllProduct()
         {
             Console.WriteLine("dAP");
-            List<Item> products = new List<Item>();
             string ownerInventoryFileName = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\json\\owners_inventory.json";
             string lines = File.ReadAllText(ownerInventoryFileName);
-            products = JsonConvert.DeserializeObject<List<Item>>(lines);
+            List<Item> products = JsonConvert.DeserializeObject<List<Item>>(lines);
             Console.WriteLine("dAS");
             for (int i = 0; i < products.Count(); i++)
             {

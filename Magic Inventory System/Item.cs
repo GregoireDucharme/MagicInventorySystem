@@ -12,5 +12,13 @@ namespace Magic_Inventory_System
         public string Product { get; set; }
         public int CurrentStock { get; set; }
         public bool ReStock { get; set; }
+
+        public Item(int id, string product, int currentStock, bool reStock = false)
+        {
+            Id = id;
+            Product = product;
+            CurrentStock = currentStock;
+            ReStock = reStock;
+        }
     }
 }

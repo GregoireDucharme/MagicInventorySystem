@@ -24,7 +24,14 @@ namespace Magic_Inventory_System
         }
         protected void read()
         {
-            _choice = Convert.ToInt32(Console.ReadLine());
+            string inputUser;
+
+            inputUser = Console.ReadLine();
+            while (!int.TryParse(inputUser, out _choice))
+            {
+                Console.WriteLine("Invalid input");
+                inputUser = Console.ReadLine();
+            }
         }
         //Usefull in every child class ? 
         protected void waitForInput()

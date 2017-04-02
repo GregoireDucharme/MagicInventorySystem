@@ -20,10 +20,9 @@ namespace Magic_Inventory_System
             if (product.ReStock == true)
             {
                 List<Stock> stocks = new List<Stock>();
-                List<Item> ownerProducts = new List<Item>();
                 string ownerInventoryFileName = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\json\\owners_inventory.json";
                 string lines = File.ReadAllText(ownerInventoryFileName);
-                ownerProducts = JsonConvert.DeserializeObject<List<Item>>(lines);
+                List<Item> ownerProducts = JsonConvert.DeserializeObject<List<Item>>(lines);
                 bool availability = false;
                 for (int i = 0; i < ownerProducts.Count(); i++)
                 {
@@ -53,11 +52,10 @@ namespace Magic_Inventory_System
         private short displayInventory()
         {
             Console.WriteLine("dI");
-            List<Item> products = new List<Item>();
             List<int> IdArray = new List<int>();
             string storeInventoryFileName = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\json\\" + _storeName + "_inventory.json";
             string lines = File.ReadAllText(storeInventoryFileName);
-            products = JsonConvert.DeserializeObject<List<Item>>(lines);
+            List <Item> products = JsonConvert.DeserializeObject<List<Item>>(lines);
             Console.WriteLine("dAS");
             for (int i = 0; i < products.Count(); i++)
             {
@@ -98,16 +96,14 @@ namespace Magic_Inventory_System
         private short addNewItem()
         {
             Console.WriteLine("aNI");
-            List<Item> products = new List<Item>();
             List<int> IdArray = new List<int>();
             string storeInventoryFileName = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\json\\" + _storeName + "_inventory.json";
             string lines = File.ReadAllText(storeInventoryFileName);
-            products = JsonConvert.DeserializeObject<List<Item>>(lines);
+            List<Item> products = JsonConvert.DeserializeObject<List<Item>>(lines);
 
-            List<Item> ownerProducts = new List<Item>();
             string ownerInventoryFileName = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\json\\owners_inventory.json";
             lines = File.ReadAllText(ownerInventoryFileName);
-            ownerProducts = JsonConvert.DeserializeObject<List<Item>>(lines);
+            List<Item> ownerProducts = JsonConvert.DeserializeObject<List<Item>>(lines);
             Console.WriteLine("dAS");
             Console.WriteLine("Your items");
             List<string> productArray = new List<string>();
