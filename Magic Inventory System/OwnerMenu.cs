@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.IO;
 
@@ -36,7 +34,6 @@ namespace Magic_Inventory_System
             string stockRequestFileName = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\json\\stockrequests.json";
             string lines = File.ReadAllText(stockRequestFileName);
             List<Stock> stocks = JsonConvert.DeserializeObject<List<Stock>>(lines);
-            Console.WriteLine("dAS");
             for (int i = 0; i < stocks.Count(); i++)
             {
                 if (useCondition == false || condition == stocks[i].StockAvailability)
@@ -67,7 +64,6 @@ namespace Magic_Inventory_System
         }
         private short displayStock()
         {
-            Console.WriteLine("dS");
             string ConditionString = Console.ReadLine();
             useCondition = true;
             if (String.Compare(ConditionString, "true", true) == 0 || String.Compare(ConditionString, "t", true) == 0)
@@ -85,11 +81,9 @@ namespace Magic_Inventory_System
         }
         private short displayAllProduct()
         {
-            Console.WriteLine("dAP");
             string ownerInventoryFileName = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\json\\owners_inventory.json";
             string lines = File.ReadAllText(ownerInventoryFileName);
             List<Item> products = JsonConvert.DeserializeObject<List<Item>>(lines);
-            Console.WriteLine("dAS");
             for (int i = 0; i < products.Count(); i++)
             {
                 Console.WriteLine($"Id = {products[i].Id} Product = {products[i].Product} CurrentStock = {products[i].CurrentStock} ");

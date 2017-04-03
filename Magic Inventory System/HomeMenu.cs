@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Magic_Inventory_System
 {
@@ -14,7 +10,6 @@ namespace Magic_Inventory_System
 
         private short ownerMenu()
         {
-            Console.WriteLine("oM");
             OwnerMenu OM = new OwnerMenu();
             short result = 1;
 
@@ -29,7 +24,6 @@ namespace Magic_Inventory_System
 
         private short franchiseOwnerMenu()
         {
-            Console.WriteLine("fOM");
             Console.Clear();
             Console.WriteLine("Franchise holder id ?");
             Console.WriteLine("CBD.1 North.2 South.3 East.4 West.5");
@@ -66,7 +60,6 @@ namespace Magic_Inventory_System
                     CM.display();
                     result = CM.run();
                 }
-                Console.WriteLine("cM");
             }
             return result;
         }

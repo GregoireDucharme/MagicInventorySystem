@@ -3,24 +3,50 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Magic_Inventory_System
 {
     class CustomerMenu : AMenu
     {
+        private string bookingReferenceMorning;
+        private string bookingReferenceAfternoon;
         private string _storeName;
+        private int registeredForWorkshop = 0;
         List<Tuple<string, int>> pickedItems = new List<Tuple<string, int>>();
 
         private short displayWorkshop()
         {
-            Console.WriteLine("dW");
+            Console.Clear();
+            Console.WriteLine("Workshop available");
+            Console.WriteLine("1. Morning" + (registeredForWorkshop == 1 ? " - Registered" : ""));
+            Console.WriteLine("2. Afternoon" + (registeredForWorkshop == 2 ? " - Registered" : ""));
+            Console.WriteLine("3. Quit");
+            read();
+            switch (_choice)
+            {
+                case 1:
+                    Console.WriteLine("Booking reference: " + bookingReferenceMorning);
+                    registeredForWorkshop = 1;
+                    waitForInput();
+                    break;
+                case 2:
+                    Console.WriteLine("Booking reference: " + bookingReferenceAfternoon);
+                    registeredForWorkshop = 2;
+                    waitForInput();
+                    break;
+                case 3:
+                    registeredForWorkshop = 3;
+                    break;
+                default:
+                    Console.WriteLine("Unvalid command");
+                    displayWorkshop();
+                    break;
+
+            }
             return 1;
         }
         private short displayProduct()
         {
-            Console.WriteLine("dP");
             List<int> IdArray = new List<int>();
             string storeInventoryFileName = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\json\\" + _storeName + "_inventory.json";
             string lines = File.ReadAllText(storeInventoryFileName);
@@ -86,9 +112,11 @@ namespace Magic_Inventory_System
                                 {
                                     for (int k = 0; k < pickedItems.Count(); k++)
                                     {
+                                        Console.WriteLine("You bought :");
                                         if (string.Compare(customerProducts[j].Product, pickedItems[k].Item1) == 0)
                                         {
                                             customerProducts[j].CurrentStock += pickedItems[k].Item2;
+                                            Console.WriteLine($"{pickedItems[k].Item2} {pickedItems[k].Item1}");
                                             pickedItems.Remove(pickedItems[k]);
                                             k--;
                                         }
@@ -97,10 +125,16 @@ namespace Magic_Inventory_System
                                 for (int j = 0; j < pickedItems.Count(); j++)
                                 {
                                     customerProducts.Add(new Item((customerProducts.Count() > 0 ? customerProducts.Last().Id + 1 : 1), pickedItems[j].Item1, pickedItems[j].Item2));
+                                    Console.WriteLine($"{pickedItems[j].Item2} {pickedItems[j].Item1}");
+                                }
+                                if (registeredForWorkshop > 0)
+                                {
+                                    Console.WriteLine("You are book in " + (registeredForWorkshop == 1 ? "morning" : "afternoon") + " workshop, therefore you get a 10% discount");
                                 }
                                 File.WriteAllText(customerInventoryFileName, JsonConvert.SerializeObject(customerProducts));
                                 File.WriteAllText(storeInventoryFileName, JsonConvert.SerializeObject(products));
                                 pickedItems = new List<Tuple<string, int>>();
+                                waitForInput();
                             }
                             return 1;
                     }
@@ -126,6 +160,8 @@ namespace Magic_Inventory_System
             functions.Add(quit);
             functions.Add(exit);
             _storeName = storeName;
+            bookingReferenceAfternoon = "afternoon_" + storeName;
+            bookingReferenceMorning = "morning_" + storeName;
         }
     }
 }
