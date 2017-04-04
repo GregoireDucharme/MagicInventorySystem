@@ -51,10 +51,13 @@ namespace Magic_Inventory_System
             string storeInventoryFileName = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\json\\" + _storeName + "_inventory.json";
             string lines = File.ReadAllText(storeInventoryFileName);
             List <Item> products = JsonConvert.DeserializeObject<List<Item>>(lines);
+            if (products == null)
+                products = new List<Item>();
             int i = 0, id = 0, quantity = 0, toDisplay = 5;
             string userInput;
             while (true)
             {
+                /* Product available in the selected shop */
                 while (i < products.Count() && i < toDisplay)
                 {
                     IdArray.Add(products[i].Id);
@@ -65,7 +68,8 @@ namespace Magic_Inventory_System
                 Console.WriteLine("Enter Item Number to purchase or Function: ");
                 userInput = Console.ReadLine();
                 bool check = false;
-                if (int.TryParse(userInput, out id))
+                /* Check if the input in digit or letter */
+                if (int.TryParse(userInput, out id)) // Input is digit
                 {
                     /* handleInt */
                     id = _choice;
@@ -90,7 +94,7 @@ namespace Magic_Inventory_System
                         check = false;
                     }
                 }
-                else
+                else // Input is something else
                 {
                     switch (userInput.ToLower())
                     {
@@ -113,6 +117,7 @@ namespace Magic_Inventory_System
                                     for (int k = 0; k < pickedItems.Count(); k++)
                                     {
                                         Console.WriteLine("You bought :");
+                                        // Avoid doublon is user inventory by just adding the number to the existing one
                                         if (string.Compare(customerProducts[j].Product, pickedItems[k].Item1) == 0)
                                         {
                                             customerProducts[j].CurrentStock += pickedItems[k].Item2;
@@ -122,6 +127,7 @@ namespace Magic_Inventory_System
                                         }
                                     }
                                 }
+                                // Create a new item in user inventory
                                 for (int j = 0; j < pickedItems.Count(); j++)
                                 {
                                     customerProducts.Add(new Item((customerProducts.Count() > 0 ? customerProducts.Last().Id + 1 : 1), pickedItems[j].Item1, pickedItems[j].Item2));
@@ -156,7 +162,6 @@ namespace Magic_Inventory_System
         {
             functions.Add(displayProduct);
             functions.Add(displayWorkshop);
-            // Should quit be on the delegate ?
             functions.Add(quit);
             functions.Add(exit);
             _storeName = storeName;

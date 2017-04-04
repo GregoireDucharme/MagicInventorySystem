@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Magic_Inventory_System
 {
+    // Default class to read the inventory
     class Item
     {
         public int Id { get; set; }

@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace Magic_Inventory_System
 {
-    // Is it A ?
     abstract class AMenu
     {
         protected int _choice;
         protected delegate short function();
         protected List<function> functions = new List<function>();
+
+        /* Function for the delegate */
         protected short quit()
         {
             Console.WriteLine("quit");
@@ -22,6 +23,8 @@ namespace Magic_Inventory_System
             Console.WriteLine("exit");
             return -1;
         }
+        /* End of delegate function */
+
         protected void read()
         {
             string inputUser;
@@ -33,7 +36,6 @@ namespace Magic_Inventory_System
                 inputUser = Console.ReadLine();
             }
         }
-        //Usefull in every child class ? 
         protected void waitForInput()
         {
             Console.ReadLine();
@@ -41,6 +43,7 @@ namespace Magic_Inventory_System
         public short run()
         {
             read();
+            /* Functions being the delegate of each children class and initialized in each default constructor */
             if (_choice > 0 && _choice <= functions.Count())
                 return functions[_choice - 1](); // Typing 1 meaning accessing function index 0
             return -1;

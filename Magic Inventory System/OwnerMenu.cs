@@ -29,11 +29,13 @@ namespace Magic_Inventory_System
         private bool condition = false;
         private short displayAllStock()
         {
-            // Any better option ?
             List<int> IdArray = new List<int>();
             string stockRequestFileName = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\json\\stockrequests.json";
             string lines = File.ReadAllText(stockRequestFileName);
             List<Stock> stocks = JsonConvert.DeserializeObject<List<Stock>>(lines);
+            if (stocks == null)
+                stocks = new List<Stock>();
+
             for (int i = 0; i < stocks.Count(); i++)
             {
                 if (useCondition == false || condition == stocks[i].StockAvailability)
@@ -84,6 +86,9 @@ namespace Magic_Inventory_System
             string ownerInventoryFileName = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\json\\owners_inventory.json";
             string lines = File.ReadAllText(ownerInventoryFileName);
             List<Item> products = JsonConvert.DeserializeObject<List<Item>>(lines);
+            if (products == null)
+                products = new List<Item>();
+
             for (int i = 0; i < products.Count(); i++)
             {
                 Console.WriteLine($"Id = {products[i].Id} Product = {products[i].Product} CurrentStock = {products[i].CurrentStock} ");
@@ -108,9 +113,7 @@ namespace Magic_Inventory_System
             functions.Add(displayAllStock);
             functions.Add(displayStock);
             functions.Add(displayAllProduct);
-            // Should quit be on the delegate ?
             functions.Add(quit);
-            // NOT WORKING FOR NOW, SAME AS QUIT
             functions.Add(exit);
         }
     }

@@ -4,21 +4,27 @@ namespace Magic_Inventory_System
 {
     class HomeMenu : AMenu
     {
-        //Should it be in the abstract class ?
-        //Quid of prototype
-        
+       
 
         private short ownerMenu()
         {
-            OwnerMenu OM = new OwnerMenu();
-            short result = 1;
-
-            while (result == 1)
+            try
             {
-                OM.display();
-                result = OM.run();
+                OwnerMenu OM = new OwnerMenu();
+                short result = 1;
+
+                while (result == 1)
+                {
+                    OM.display();
+                    result = OM.run();
+                }
+                return result;
             }
-            return result;
+            catch (Exception e)
+            {
+                Console.WriteLine("An error occured: " + e.ToString());
+            }
+            return 1;
         }
         string[] StoreName = { "CBD", "North", "South", "East", "West" };
 
@@ -27,20 +33,28 @@ namespace Magic_Inventory_System
             Console.Clear();
             Console.WriteLine("Franchise holder id ?");
             Console.WriteLine("CBD.1 North.2 South.3 East.4 West.5");
-            read();
-            short result = 1;
-            if (_choice >= 1 && _choice <= 4)
+            try
             {
-                FranchiseHolderMenu FHM = new FranchiseHolderMenu(StoreName[_choice - 1]);
-                while (result == 1)
+                read();
+                short result = 1;
+                if (_choice >= 1 && _choice <= 4)
                 {
-                    FHM.display();
-                    result = FHM.run();
+                    FranchiseHolderMenu FHM = new FranchiseHolderMenu(StoreName[_choice - 1]);
+                    while (result == 1)
+                    {
+                        FHM.display();
+                        result = FHM.run();
+                    }
                 }
+                else
+                    Console.WriteLine("Wrong franchise holder id");
+                return result;
             }
-            else
-                Console.WriteLine("Wrong franchise holder id");
-            return result;
+            catch (Exception e)
+            {
+                Console.WriteLine("An error occured: " + e.ToString());
+            }
+            return 1;
         }
 
         private short customerMenu()
@@ -48,27 +62,34 @@ namespace Magic_Inventory_System
             Console.Clear();
             Console.WriteLine("Shop id ?");
             Console.WriteLine("CBD.1 North.2 South.3 East.4 West.5");
-            read();
-            short result = 1;
-
-            if (_choice >= 1 && _choice <= 4)
+            try
             {
-                CustomerMenu CM = new CustomerMenu(StoreName[_choice - 1]);
+                read();
+                short result = 1;
 
-                while (result == 1)
+                if (_choice >= 1 && _choice <= 4)
                 {
-                    CM.display();
-                    result = CM.run();
+                    CustomerMenu CM = new CustomerMenu(StoreName[_choice - 1]);
+
+                    while (result == 1)
+                    {
+                        CM.display();
+                        result = CM.run();
+                    }
                 }
+                return result;
             }
-            return result;
+            catch (Exception e)
+            {
+                Console.WriteLine("An error occured: " + e.ToString());
+            }
+            return 1;
         }
         public HomeMenu()
         {
             functions.Add(ownerMenu);
             functions.Add(franchiseOwnerMenu);
             functions.Add(customerMenu);
-            // Should quit be on the delegate ?
             functions.Add(exit);
         }
         override public void display()

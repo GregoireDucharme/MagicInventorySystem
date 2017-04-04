@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Magic_Inventory_System
 {
+    // Default class to use the owner stock
     class Stock
     {
         public int Id {get; set;}

@@ -17,7 +17,7 @@ namespace Magic_Inventory_System
             read();
             if (product.ReStock == true)
             {
-                List<Stock> stocks = new List<Stock>();
+                List<Stock> stocks;
                 string ownerInventoryFileName = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\json\\owners_inventory.json";
                 string lines = File.ReadAllText(ownerInventoryFileName);
                 List<Item> ownerProducts = JsonConvert.DeserializeObject<List<Item>>(lines);
@@ -36,6 +36,9 @@ namespace Magic_Inventory_System
                 string stockRequestFileName = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\json\\stockrequests.json";
                 lines = File.ReadAllText(stockRequestFileName);
                 stocks = JsonConvert.DeserializeObject<List<Stock>>(lines);
+                if (stocks == null)
+                    stocks = new List<Stock>();
+
                 stocks.Add(new Stock(stocks.Last().Id + 1, _storeName, product.Product, _choice, product.CurrentStock, availability));
                 File.WriteAllText(stockRequestFileName, JsonConvert.SerializeObject(stocks));
                 Console.WriteLine("Request will be processed, press any key to exit");
@@ -49,12 +52,12 @@ namespace Magic_Inventory_System
         }
         private short displayInventory()
         {
-            Console.WriteLine("dI");
             List<int> IdArray = new List<int>();
             string storeInventoryFileName = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\json\\" + _storeName + "_inventory.json";
             string lines = File.ReadAllText(storeInventoryFileName);
             List <Item> products = JsonConvert.DeserializeObject<List<Item>>(lines);
-            Console.WriteLine("dAS");
+            if (products == null)
+                products = new List<Item>();
             for (int i = 0; i < products.Count(); i++)
             {
                 if (useCondition == false || useCondition == true && products[i].CurrentStock <= condition)
@@ -81,9 +84,9 @@ namespace Magic_Inventory_System
             }
             return 1;
         }
+        //Use the same function avec displayInventory, just defined the condition
         private short displayInventoryThreshold()
         {
-            Console.WriteLine("dIT");
             Console.WriteLine("Define threshold");
             read();
             useCondition = true;
@@ -93,16 +96,19 @@ namespace Magic_Inventory_System
         }
         private short addNewItem()
         {
-            Console.WriteLine("aNI");
             List<int> IdArray = new List<int>();
             string storeInventoryFileName = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\json\\" + _storeName + "_inventory.json";
             string lines = File.ReadAllText(storeInventoryFileName);
             List<Item> products = JsonConvert.DeserializeObject<List<Item>>(lines);
+            if (products == null)
+                products = new List<Item>();
 
             string ownerInventoryFileName = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\json\\owners_inventory.json";
             lines = File.ReadAllText(ownerInventoryFileName);
             List<Item> ownerProducts = JsonConvert.DeserializeObject<List<Item>>(lines);
-            Console.WriteLine("dAS");
+            if (ownerProducts == null)
+                ownerProducts = new List<Item>();
+
             Console.WriteLine("Your items");
             List<string> productArray = new List<string>();
             for (int i = 0; i < products.Count(); i++)
